@@ -16,8 +16,15 @@ const SampleProvider = ({ children }) => {
   const [sampleState, dispatch] = useReducer(SampleReducer, {
     test: "sample text",
   });
+
+  const updateTest = (testvalue) => {
+    dispatch({
+      type: "UPDATE_TEST",
+      payload: testvalue,
+    });
+  };
   return (
-    <SampleContext.Provider value={{ test: "sample text" }}>
+    <SampleContext.Provider value={{ sampleState, updateTest }}>
       {children}
     </SampleContext.Provider>
   );
