@@ -89,6 +89,11 @@ const FirstComponent = ({
           </button>
         )}
       </p>
+      <h2> {testTheProvider.sampleState.test} </h2>
+      <button id="test" onClick={(e) => testTheProvider.updateTest(subject)}>
+        {" "}
+        update Context value(Test with subject)
+      </button>
       <ul>
         {subs.map((s, index) => (
           // key needs to be provided for a list as during array use all the elements must be provided a unique key
