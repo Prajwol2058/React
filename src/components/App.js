@@ -14,6 +14,7 @@ import { IoCashOutline } from "react-icons/io5";
 import { RiBillLine } from "react-icons/ri";
 import { MdLooksOne } from "react-icons/md";
 import SampleProvider from "../contexts/SampleContext";
+import FormikNepseStocks from "./FormikNepseStocks ";
 
 function App() {
   const [stocks, setStocks] = useState(STOCKS);
@@ -43,6 +44,13 @@ function App() {
       key: "nepseStocks",
       path: "/nepseStocks",
       component: <NepseStocks setStocks={setStocks} stocks={stocks} />,
+      icon: <RiStockFill />,
+    },
+    {
+      title: "Formik Nepse Stocks",
+      key: "formiknepseStocks",
+      path: "/formiknepseStocks",
+      component: <FormikNepseStocks setStocks={setStocks} stocks={stocks} />,
       icon: <RiStockFill />,
     },
     {

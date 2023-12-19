@@ -4,8 +4,9 @@ import "./App.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { SampleContext, useSample } from "../contexts/SampleContext";
+import { useFormik } from "formik";
 
-const NepseStocks = ({ setStocks, stocks }) => {
+const FormikNepseStocks = ({ setStocks, stocks }) => {
   const [securityName, setSecurityName] = useState("");
   const [securityId, setSecurityId] = useState("");
   const [symbol, setSymbol] = useState("");
@@ -16,6 +17,15 @@ const NepseStocks = ({ setStocks, stocks }) => {
 
   const testTheProvider = useSample();
   console.log(SampleContext, "check for Nepse Stocks");
+
+  const formik = useFormik({
+    initialValues: {
+      securityName: "",
+      symbol: " ",
+      securityId: "",
+    },
+    onSubmit: (values) => alert(JSON.stringify(values)),
+  });
 
   const [foundStocks, setFoundStocks] = useState(stocks);
 
@@ -84,24 +94,53 @@ const NepseStocks = ({ setStocks, stocks }) => {
       symbolRef.current?.focus();
     }
   };
+
+  console.log(formik, "check formik");
   return (
     <div id="stocks">
       <h1> List of Nepse Stocks</h1>
       <h4>Total Stocks :{stocks.length}</h4>
-      <input
-        className="inputbox"
-        id="securityId"
-        name="securityId"
-        placeholder="Enter Security Id"
-        value={securityId}
-        onChange={(e) => setSecurityId(e.target.value)}
-        ref={securityIdRef}
-        onKeyUp={(e) =>
-          e.code === "Enter" ? securityNameRef.current?.focus() : void 0
-        }
-      />
+      {/* //   <input
+    //     className="inputbox"
+    //     id="securityId"
+    //     name="securityId"
+    //     placeholder="Enter Security Id"
+    //     value={securityId}
+    //     onChange={(e) => setSecurityId(e.target.value)}
+    //     ref={securityIdRef}
+    //     onKeyUp={(e) =>
+    //       e.code === "Enter" ? securityNameRef.current?.focus() : void 0
+    //     }
+    //   /> */}
+      <form onSubmit={formik.handleSubmit}>
+        <label htmlFor="securityID">security Id</label>
+        <input
+          id="securityId"
+          name="securityId"
+          type="number"
+          onChange={formik.handleChange}
+          value={formik.values.securityId}
+        />
 
-      <input
+        <label htmlFor="securityName">securityName</label>
+        <input
+          id="securityName"
+          name="securityName"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.securityName}
+        />
+
+        <label htmlFor="symbol">security Id</label>
+        <input
+          id="symbol"
+          name="symbol"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.symbol}
+        />
+
+        {/* <input
         id="securityName"
         name="securityName"
         className="inputbox"
@@ -125,36 +164,40 @@ const NepseStocks = ({ setStocks, stocks }) => {
         ref={symbolRef}
         onChange={(e) => setSymbol(e.target.value)}
         onKeyUp={handlePressEnterAtSymbol}
-      />
+      /> */}
 
-      <button onClick={handleAddUpdateStocks} id="submit" className="inputbox">
-        {editMode ? "Update" : "Add"} Stocks
-      </button>
-
-      {editMode && (
-        <button onClick={handleCancel} id="cancel">
-          Cancel
+        <button
+          // onClick={handleAddUpdateStocks}
+          id="submit"
+          className="inputbox"
+        >
+          {editMode ? "Update" : "Add"} Stocks
         </button>
-      )}
 
-      {confimDelete && (
-        <div>
-          <p> Do you really want to delete {selectedStocks.securityName}?</p>
-          <button onClick={handleDeleteStock} id="delete">
-            Delete Stock
-          </button>
-          <button
-            onClick={(e) => {
-              setSelectedStocks(null);
-              setConfirmDelete(false);
-            }}
-            id="cancel-del"
-          >
+        {editMode && (
+          <button onClick={handleCancel} id="cancel">
             Cancel
           </button>
-        </div>
-      )}
+        )}
 
+        {confimDelete && (
+          <div>
+            <p> Do you really want to delete {selectedStocks.securityName}?</p>
+            <button onClick={handleDeleteStock} id="delete">
+              Delete Stock
+            </button>
+            <button
+              onClick={(e) => {
+                setSelectedStocks(null);
+                setConfirmDelete(false);
+              }}
+              id="cancel-del"
+            >
+              Cancel
+            </button>
+          </div>
+        )}
+      </form>
       <div>
         <input
           id="searchStock"
@@ -204,4 +247,4 @@ const NepseStocks = ({ setStocks, stocks }) => {
   );
 };
 // Exporting the StockComponent as the default export
-export default NepseStocks;
+export default FormikNepseStocks;
