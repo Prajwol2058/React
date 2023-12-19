@@ -5,6 +5,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { SampleContext, useSample } from "../contexts/SampleContext";
 import { useFormik } from "formik";
+import { stockSchema } from "../schemas/stockschema";
 
 const FormikNepseStocks = ({ setStocks, stocks }) => {
   const [securityName, setSecurityName] = useState("");
@@ -24,6 +25,7 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
       symbol: " ",
       securityId: "",
     },
+    validationSchema: stockSchema,
     onSubmit: (values) => alert(JSON.stringify(values)),
   });
 
@@ -96,6 +98,7 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
   };
 
   console.log(formik, "check formik");
+  console.log(formik, "check formik", formik.values, formik.errors);
   return (
     <div id="stocks">
       <h1> List of Nepse Stocks</h1>
@@ -119,6 +122,7 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
           name="securityId"
           type="number"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           value={formik.values.securityId}
         />
 
@@ -128,6 +132,7 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
           name="securityName"
           type="text"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           value={formik.values.securityName}
         />
 
@@ -137,6 +142,7 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
           name="symbol"
           type="text"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           value={formik.values.symbol}
         />
 
