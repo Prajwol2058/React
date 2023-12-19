@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
 import { SampleContext } from "../contexts/SampleContext";
@@ -31,8 +31,15 @@ const FirstComponent = ({
 
   const [delalrt, setdelalrt] = useState(false);
 
+  const [testLocal, setTestLocal] = useState("");
+
   const testTheProvider = useContext(SampleContext);
   console.log(testTheProvider, "check for fisrt component");
+
+  useEffect(() => {
+    const testttt = localStorage.getItem("testObject");
+    setTestLocal(testttt);
+  }, []);
 
   return (
     // providing an id to uniquely identify the components

@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 export const SampleContext = createContext();
 
@@ -6,6 +6,11 @@ const SampleReducer = (state, action) => {
   switch (action.type) {
     case "UPDATE_TEST":
       state.test = action.payload;
+      localStorage.setItem("test", action.payload);
+      localStorage.setItem(
+        "testObject",
+        JSON.stringify({ name: "test", date: "today" })
+      );
       return state;
     default:
       return state;
@@ -31,3 +36,5 @@ const SampleProvider = ({ children }) => {
 };
 
 export default SampleProvider;
+
+export const useSample = () => useContext(SampleContext);
