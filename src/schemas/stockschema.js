@@ -2,9 +2,9 @@
 import { object, string, number, date } from "yup";
 
 export const stockSchema = object({
-  securityId: string().required(),
-  securityName: string().required(),
-  symbol: string().required(),
+  securityId: string().required("securityId compulsory"),
+  securityName: string().required("securityname compulsory"),
+  symbol: string().required("symbol required"),
   //   totalTradedQuantity: number().default(() => 0),
   //   lastTradedPrice: number().required().positive(),
 });

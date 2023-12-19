@@ -97,8 +97,14 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
     }
   };
 
-  console.log(formik, "check formik");
   console.log(formik, "check formik", formik.values, formik.errors);
+  console.log(
+    formik,
+    "check formik",
+    formik.values,
+    formik.errors,
+    formik.touched
+  );
   return (
     <div id="stocks">
       <h1> List of Nepse Stocks</h1>
@@ -125,6 +131,7 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
           onBlur={formik.handleBlur}
           value={formik.values.securityId}
         />
+        <span>{formik.errors.securityId}</span>
 
         <label htmlFor="securityName">securityName</label>
         <input
@@ -135,6 +142,7 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
           onBlur={formik.handleBlur}
           value={formik.values.securityName}
         />
+        <span>{formik.errors.securityName}</span>
 
         <label htmlFor="symbol">security Id</label>
         <input
@@ -145,6 +153,7 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
           onBlur={formik.handleBlur}
           value={formik.values.symbol}
         />
+        <span>{formik.errors.symbol}</span>
 
         {/* <input
         id="securityName"
