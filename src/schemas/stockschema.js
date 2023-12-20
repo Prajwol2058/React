@@ -9,7 +9,7 @@ export const stockSchema = object({
     .integer("no decimals allowed"),
   securityName: string().required("securityname compulsory"),
   symbol: string().required("symbol required"),
-  symbol: string
+  symbol: string()
     .required("Symbol chaahinxa!")
     .min(3, "3 letters hunai paryo ni!"),
   //   totalTradedQuantity: number().default(() => 0),
