@@ -15,6 +15,7 @@ import { RiBillLine } from "react-icons/ri";
 import { MdLooksOne } from "react-icons/md";
 import SampleProvider from "../contexts/SampleContext";
 import FormikNepseStocks from "./FormikNepseStocks ";
+import Flights from "./flight";
 
 function App() {
   const [stocks, setStocks] = useState(STOCKS);
@@ -67,6 +68,12 @@ function App() {
       component: <BillingList stocks={stocks} />,
       icon: <RiBillLine />,
     },
+    {
+      title: "flight",
+      key: "flight",
+      path: ".flight",
+      component: <Flights />,
+    },
   ];
 
   return (
@@ -116,7 +123,7 @@ function App() {
         </div>
       </div>
       <header className="App-header">
-        <p>Designed by Srijan</p>
+        <p>Designed by Prajwol</p>
         <ToastContainer />
       </header>
     </div>
