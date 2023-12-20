@@ -133,6 +133,10 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
         />
         <span>{formik.errors.securityId}</span>
 
+        {formik.touched.securityId && formik.errors.securityId && (
+          <span>{formik.errors.securityId}</span>
+        )}
+
         <label htmlFor="securityName">securityName</label>
         <input
           id="securityName"
@@ -143,6 +147,9 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
           value={formik.values.securityName}
         />
         <span>{formik.errors.securityName}</span>
+        {formik.touched.securityName && formik.errors.securityName && (
+          <span>{formik.errors.securityName}</span>
+        )}
 
         <label htmlFor="symbol">security Id</label>
         <input
@@ -154,6 +161,10 @@ const FormikNepseStocks = ({ setStocks, stocks }) => {
           value={formik.values.symbol}
         />
         <span>{formik.errors.symbol}</span>
+
+        {formik.touched.symbol && formik.errors.symbol && (
+          <span>{formik.errors.symbol}</span>
+        )}
 
         {/* <input
         id="securityName"
